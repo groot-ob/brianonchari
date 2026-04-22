@@ -1,6 +1,7 @@
 <script setup>
 import { ArrowUpRight, Mail, Github, Linkedin, ExternalLink } from 'lucide-vue-next';
-
+import mzigomatch from '../assets/mzigomatch.png'
+import outsourceafrica from '../assets/outsource.png'
 // Comprehensive Data from Brian Onchari's Resume
 const skills = {
   languages: "Java, Kotlin, JavaScript, SQL",
@@ -89,12 +90,14 @@ const experience = [
 const featuredProjects = [
   {
     title: 'Mzigo Match',
-    desc: 'Developed a distributed logistics engine utilizing spatial indexing to match service providers with clients in real-time, featuring automated M-Pesa settlement[cite: 127, 128].',
+    image: mzigomatch,
+    desc: 'Developed a distributed logistics engine utilizing spatial indexing to match service providers with clients in real-time, featuring automated M-Pesa settlement.',
     tags: ['Spring Boot', 'PostGIS', 'Mapbox', 'WhatsApp API','Android', 'VueJs'],
     link: 'https://mzigomatch.com/'
   },
   {
     title: 'Outsource Africa',
+    image: outsourceafrica,
     desc: 'B2B work marketplace featuring a secure digital wallet and escrow account to guarantee trust between clients and service providers.',
     tags: ['Java', 'Spring Boot', 'VueJs','PayPal', 'PostgreSQL', 'Grafana'],
     link: 'https://outsourceafrica.co.ke/'
@@ -172,19 +175,31 @@ technology to tackle real-world challenges and build solutions that truly make a
         <h2 class="text-xs font-bold uppercase tracking-[0.3em] text-gray-400 mb-16">Selected Projects</h2>
         <div class="grid md:grid-cols-2 gap-12">
           <a v-for="project in featuredProjects" :key="project.title" :href="project.link" target="_blank"
-             class="group block p-10 border border-gray-100 rounded-3xl hover:border-black hover:bg-black hover:text-white transition-all duration-500">
-            <div class="flex justify-between items-start mb-8">
-              <h3 class="text-3xl font-semibold tracking-tighter">{{ project.title }}</h3>
-              <ArrowUpRight class="w-6 h-6 opacity-20 group-hover:opacity-100 transition-opacity" />
+            class="group block p-4 border border-gray-100 rounded-[2rem] hover:border-black transition-all duration-500">
+            
+            <div class="relative aspect-video overflow-hidden rounded-[1.5rem] mb-8 bg-gray-50">
+              <img 
+                :src="project.image" 
+                :alt="project.title"
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
             </div>
-            <p class="text-gray-500 group-hover:text-gray-400 mb-10 leading-relaxed">
-              {{ project.desc }}
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span v-for="tag in project.tags" :key="tag" 
-                    class="text-[10px] font-bold uppercase tracking-widest border border-gray-100 group-hover:border-white/20 px-3 py-1.5 rounded-full">
-                {{ tag }}
-              </span>
+
+            <div class="px-6 pb-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-3xl font-semibold tracking-tighter">{{ project.title }}</h3>
+                <ArrowUpRight class="w-6 h-6 opacity-20 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+              </div>
+              <p class="text-gray-500 mb-10 leading-relaxed min-h-[3rem]">
+                {{ project.desc }}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span v-for="tag in project.tags" :key="tag" 
+                      class="text-[10px] font-bold uppercase tracking-widest border border-gray-100 px-3 py-1.5 rounded-full text-gray-400">
+                  {{ tag }}
+                </span>
+              </div>
             </div>
           </a>
         </div>
