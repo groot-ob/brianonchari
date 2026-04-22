@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-brand-beige: #F9F7F2;
+  --color-brand-dark: #1A2F2F;
+  --color-brand-orange: #E67E22;
+  --color-brand-accent: #84A59D;
+
+  /* Typography */
+  --font-serif: "Instrument Serif", serif;
+  --font-sans: "Inter", sans-serif;
+
+  /* Custom Radius */
+  --radius-4xl: 2.5rem;
+}
+
+@layer base {
+  body {
+    /* Now these will work because they are defined in @theme above */
+    @apply bg-brand-beige text-brand-dark antialiased;
+  }
+}
